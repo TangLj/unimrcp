@@ -135,9 +135,13 @@ MRCP_DECLARE(mrcp_client_t*) unimrcp_client_create(apt_dir_layout_t *dir_layout)
 /** Create UniMRCP client from XML string configuration */
 MRCP_DECLARE(mrcp_client_t*) unimrcp_client_create2(const char *xmlconfig)
 {
+	unimrcp_client_create3(xmlconfig, NULL);
+}
+MRCP_DECLARE(mrcp_client_t*) unimrcp_client_create3(const char *xmlconfig, apt_dir_layout_t *dir_layout)
+{
 	unimrcp_client_loader_t *loader;
 
-	loader = unimrcp_client_init(NULL);
+	loader = unimrcp_client_init(dir_layout);
 	if (!loader)
 		return NULL;
 

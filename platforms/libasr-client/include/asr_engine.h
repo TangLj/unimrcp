@@ -118,6 +118,11 @@ ASR_CLIENT_DECLARE(asr_engine_t*) asr_engine_create(
 									const char *root_dir_path,
 									apt_log_priority_e log_priority,
 									apt_log_output_e log_output);
+ASR_CLIENT_DECLARE(asr_engine_t*) asr_engine_create3(
+									const char *root_dir_path,
+									const char *xmlconfig,
+									apt_log_priority_e log_priority,
+									apt_log_output_e log_output);
 
 /**
  * Destroy ASR engine.

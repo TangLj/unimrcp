@@ -384,3 +384,6 @@
 /tests/strtablegen/Makefile.in
 /tests/strtablegen/Makefile
 /tests/strtablegen/strtablegen
+
+.vscode
+*.wav

@@ -78,6 +78,14 @@ ASR_CLIENT_DECLARE(asr_engine_t*) asr_engine_create(
 									apt_log_priority_e log_priority,
 									apt_log_output_e log_output)
 {
+	asr_engine_create3(root_dir_path, NULL, log_priority, log_output);
+}
+ASR_CLIENT_DECLARE(asr_engine_t*) asr_engine_create3(
+									const char *root_dir_path,
+									const char *xmlconfig,
+									apt_log_priority_e log_priority,
+									apt_log_output_e log_output)
+{
 	apr_pool_t *pool = NULL;
 	apt_dir_layout_t *dir_layout;
 	asr_engine_t *engine;
@@ -116,7 +124,11 @@ ASR_CLIENT_DECLARE(asr_engine_t*) asr_engine_create(
 	engine->mrcp_app = NULL;
 
 	/* create UniMRCP client stack */
-	mrcp_client = unimrcp_client_create(dir_layout);
+	if(xmlconfig) {
+		mrcp_client = unimrcp_client_create3(xmlconfig, dir_layout);
+	}else {
+		mrcp_client = unimrcp_client_create(dir_layout);
+	}
 	if(!mrcp_client) {
 		apt_log_instance_destroy();
 		apr_pool_destroy(pool);
