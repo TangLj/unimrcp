@@ -787,6 +787,20 @@ static void *set_individual_param(mrcp_message_t *mrcp_message, mrcp_recog_heade
 			mrcp_resource_header_property_add(mrcp_message,RECOGNIZER_HEADER_N_BEST_LIST_LENGTH);
 		}
 	}
+	if(apr_strnatcasecmp(pname,"Save-Waveform") == 0) {
+		if(0 == strlen(pvalue)) {
+			mrcp_resource_header_name_property_add(mrcp_message,RECOGNIZER_HEADER_SAVE_WAVEFORM);
+		}
+		else {
+			if(apr_strnatcasecmp(pvalue,"true") == 0) {
+				recog_header->save_waveform = TRUE;
+			}
+			else {
+				recog_header->save_waveform = FALSE;
+			}
+			mrcp_resource_header_property_add(mrcp_message,RECOGNIZER_HEADER_SAVE_WAVEFORM);
+		}
+	}
 	if(apr_strnatcasecmp(pname,"New-Audio-Channel") == 0) {
 		if(0 == strlen(pvalue)) {
 			mrcp_resource_header_name_property_add(mrcp_message,RECOGNIZER_HEADER_NEW_AUDIO_CHANNEL);

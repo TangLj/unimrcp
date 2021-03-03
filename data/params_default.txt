@@ -4,3 +4,4 @@ Speech-Complete-Timeout: 400
 DTMF-Term-Timeout: 3000
 DTMF-Interdigit-Timeout: 3000
 Confidence-Threshold: 0.5
+Save-Waveform: true
